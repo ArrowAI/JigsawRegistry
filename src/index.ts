@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(getLanguage);
 
 try {
-  const accessLogStream = fs.createWriteStream(path.join(__dirname, '../log/access.log'), {
+  const accessLogStream = fs.createWriteStream(path.join(__dirname, '../utilities/log/access.log'), {
     flags: 'a',
   });
   app.use(morgan('combined', { stream: accessLogStream }));

@@ -17,5 +17,4 @@ const config: ConnectionOptions = {
   namingStrategy: new SnakeNamingStrategy(),
 };
 
-
 export = config;

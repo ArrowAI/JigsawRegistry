@@ -11,8 +11,8 @@ temp/
 database/*
 !database/.gitkeep 
 
-log/*
-!log/.gitkeep 
+utilities/log/*
+!utilities/log/.gitkeep 
 *.log
 
 # keep config folder with env files ONLY for demo purposes
