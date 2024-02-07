@@ -7,7 +7,7 @@ build/
 dist/
 tmp/
 temp/
-db.sqlite
+
 database/*
 !database/.gitkeep 
 
@@ -18,3 +18,4 @@ log/*
 # keep config folder with env files ONLY for demo purposes
 # config/
 # .env
+db.sqlite
