@@ -1,0 +1,15 @@
+meta {
+  name: Add Modules
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:4000/v1/modules/add
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  module: @file(/Users/utkarshshukla/Downloads/0bbf87ff2af42cc2b059022ff3f74371.jpg)
+}
