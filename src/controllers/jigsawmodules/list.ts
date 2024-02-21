@@ -8,7 +8,7 @@ export const list = async (req: Request, res: Response, next: NextFunction) => {
   const jigsawModuleRepository = getRepository(JigsawModule);
   try {
     const jigsawModules = await jigsawModuleRepository.find({
-      select: ['id', 'modulename', 'userid', 'name'],
+      select: [],
     });
     res.customSuccess(200, 'List of Jigsaw Modules.', jigsawModules);
   } catch (err) {

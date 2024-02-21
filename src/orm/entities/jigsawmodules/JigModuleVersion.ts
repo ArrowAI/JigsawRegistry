@@ -1,13 +1,30 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity('jigsawmoduleversions')
-export class JigsawModuleVersion {
+// @Entity('jigsawmoduleversions')
+// export class JigsawModuleVersion {
+//   @PrimaryGeneratedColumn()
+//   id: number;
+
+//   @Column()
+//   modulename: string;
+
+//   @Column()
+//   versionId: number;
+// }
+@Entity('versions')
+export class Version {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  modulename: string;
+  moduleId: number;
 
   @Column()
-  versionId: number;
+  versionNumber: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

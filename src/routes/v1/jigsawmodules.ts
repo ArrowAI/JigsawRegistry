@@ -1,21 +1,21 @@
 import { Router } from 'express';
 
-import { list, add } from 'controllers/jigsawmodules';
+import {  addArrowModules, addBuildAssets, addVersions, assetsApi, getBuildAssets } from 'controllers/jigsawmodules';
 import { checkJwt } from 'middleware/checkJwt';
 import { checkRole } from 'middleware/checkRole';
 import { uploadMiddleware } from 'middleware/upload';
-import { validatorEdit } from 'middleware/validation/users';
+
 
 const router = Router();
-
-router.get('/', [], list);
-
-router.post('/add', [uploadMiddleware], add);
-
-// router.get('/:id([0-9]+)', [], show);
-
-// router.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR'], true), validatorEdit], edit);
-
-// router.delete('/:id([0-9]+)', [checkJwt, checkRole(['ADMINISTRATOR'], true)], destroy);
+// Add arrow modules
+router.post('/add-arrow-modules', [uploadMiddleware], addArrowModules);
+// Add versions
+router.post('/add-versions', [checkJwt, checkRole(['ADMINISTRATOR'], true)], addVersions);
+// Add Build Assets
+router.post('/add-build-assets', [uploadMiddleware], addBuildAssets);
+// Get Build Assets
+router.get('/get-build-assets', [checkJwt, checkRole(['ADMINISTRATOR'], true)], getBuildAssets);
+// Assets Api
+router.get('/assets-api', [checkJwt, checkRole(['ADMINISTRATOR'], true)], assetsApi);
 
 export default router;
