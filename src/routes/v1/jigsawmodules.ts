@@ -3,16 +3,16 @@ import { Router } from 'express';
 import {  addArrowModules, addBuildAssets, addVersions, assetsApi, getBuildAssets } from 'controllers/jigsawmodules';
 import { checkJwt } from 'middleware/checkJwt';
 import { checkRole } from 'middleware/checkRole';
-import { uploadMiddleware } from 'middleware/upload';
+// import { uploadMiddleware } from 'middleware/upload';
 
 
 const router = Router();
 // Add arrow modules
-router.post('/add-arrow-modules', [uploadMiddleware], addArrowModules);
+router.post('/add-arrow-modules', addArrowModules);
 // Add versions
 router.post('/add-versions', [checkJwt, checkRole(['ADMINISTRATOR'], true)], addVersions);
 // Add Build Assets
-router.post('/add-build-assets', [uploadMiddleware], addBuildAssets);
+router.post('/add-build-assets', addBuildAssets);
 // Get Build Assets
 router.get('/get-build-assets', [checkJwt, checkRole(['ADMINISTRATOR'], true)], getBuildAssets);
 // Assets Api

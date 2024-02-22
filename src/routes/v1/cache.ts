@@ -1,14 +1,15 @@
 import express from 'express';
-import { getCache, setCache,getAll } from './../../controllers/cache';
+import { getCache, setCache, getAll } from './../../controllers/cache';
+import {uploadMiddleware} from 'middleware/upload';
+
 
 const router = express.Router();
-router.get('/',getAll)
+router.get('/', getAll)
 // Route to get a cache entry
 router.get('/:key', getCache);
 
-// Route to set a cache entry
-router.post('/', setCache);
-
+// add multer to upload files
+router.post('/', [uploadMiddleware], setCache);
 
 
 export default router;
