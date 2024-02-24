@@ -1,57 +1,48 @@
-/// import multer and create a middleware
+// src/middleware/upload.ts
 import { Request, Response, NextFunction } from 'express';
 import multer from 'multer';
-import { ArtifactManager } from '../artifactManager';
-
+import { ArtifactManager } from './../artifactManager';
+let artiFactManager = new ArtifactManager();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // Use ArtifactManager to determine the destination
-    const destination = ArtifactManager.getUploadPath();
+    let destination = artiFactManager.getUploadPath();
     cb(null, destination);
   },
   filename: function (req, file, cb) {
-    // Use ArtifactManager to generate the filename
-    const filename = ArtifactManager.generateFilename(file);
+    let filename = artiFactManager.generateFilename(file);
+    // Ensure the filename has a .zip extension if the file is a blob
+    if (file.mimetype === 'application/octet-stream') {
+      //remove .blob from the filename
+      filename = filename.replace('.blob', '');
+      filename = `${filename}.zip`;
+    }
     cb(null, filename);
   }
 });
 
 const upload = multer({ storage: storage });
-// const upload = multer({ dest: 'uploads/' });
 
-export const uploadMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  upload.single('module')(req, res, (err: any) => {
+export const uploadCacheMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  upload.single('cache')(req, res, (err: any) => {
     if (err) {
-      return next(err);
+      // Handle the error appropriately
+      console.error(err);
+      return res.status(500).json({ message: 'File upload failed', error: err.message });
     }
-    req.body.modulefilepath = req.file.path;
+    req.body.cacheUrl = req.file.path;
     return next();
   });
 };
 
-
-
-
-
-// src/utils/multerConfig.ts
-// import multer from 'multer';
-// import { ArtifactManager } from '../artifactManager';
-
-// // Custom storage engine that delegates to the ArtifactManager
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     // Use ArtifactManager to determine the destination
-//     const destination = ArtifactManager.getUploadPath();
-//     cb(null, destination);
-//   },
-//   filename: function (req, file, cb) {
-//     // Use ArtifactManager to generate the filename
-//     const filename = ArtifactManager.generateFilename(file);
-//     cb(null, filename);
-//   }
-// });
-
-// const upload = multer({ storage: storage });
-
-// export default upload;
+export const uploadFunctionMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  upload.single('function')(req, res, (err: any) => {
+    if (err) {
+      // Handle the error appropriately
+      console.error(err);
+      return res.status(500).json({ message: 'File upload failed', error: err.message });
+    }
+    req.body.cacheUrl = req.file.path;
+    return next();
+  });
+};

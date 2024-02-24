@@ -13,6 +13,7 @@ export const getAritfactManager = () => {
     return artiFactManager[artiManagerType]
 }
 
-export const ArtifactManager = getAritfactManager()
+export const ArtifactManager = getAritfactManager();
+
 
 export type ArtifactManager = InstanceType<typeof ArtifactManager>

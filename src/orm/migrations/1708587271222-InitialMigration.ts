@@ -1,13 +1,12 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class InitialMigration1708498934149 implements MigrationInterface {
-    name = 'InitialMigration1708498934149'
+export class InitialMigration1708587271222 implements MigrationInterface {
+    name = 'InitialMigration1708587271222'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
             CREATE TABLE "cache" (
-                "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-                "cache_id" varchar NOT NULL,
+                "cache_id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
                 "cache_url" varchar NOT NULL,
                 "cache_hash" varchar NOT NULL,
                 "created_at" datetime NOT NULL DEFAULT (datetime('now')),

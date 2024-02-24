@@ -6,10 +6,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 @Entity('cache')
 export class Cache {
   @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  cacheId: string;
+  cacheId: number;
 
   @Column()
   cacheUrl: string;

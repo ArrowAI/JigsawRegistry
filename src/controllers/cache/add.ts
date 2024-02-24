@@ -6,7 +6,8 @@ import { Cache } from "orm/entities/cache/cache";
 export const setCache = async (req: Request, res: Response, next: NextFunction) => {
   const cacheRepository = getRepository(Cache);
   const cache = new Cache();
-  cache.cacheId = req.body.cacheId;
+  console.log(req.body);
+  // cache.cacheId = req.body.cacheId;
   cache.cacheUrl = req.body.cacheUrl;
   cache.cacheHash = req.body.cacheHash;
   try {

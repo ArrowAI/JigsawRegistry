@@ -28,6 +28,7 @@
     "seed:create": "PG_HOST=localhost NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:create --config ./src/orm/config/ormconfig-seed.ts -n "
   },
   "dependencies": {
+    "archiver": "^6.0.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.3",
