@@ -1,0 +1,3 @@
+add Api to extract json from code  and save it to database and then publish to npm registry
+
+or json + name of npm repo
